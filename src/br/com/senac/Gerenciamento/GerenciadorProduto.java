@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.senac.Product;
+package br.com.senac.Gerenciamento;
 
 import br.com.senac.objects.Product;
 import java.sql.Connection;
@@ -18,7 +18,7 @@ import java.util.List;
  *
  * @author João
  */
-public class Produto {
+public class GerenciadorProduto {
     
      private Connection Conexao() throws ClassNotFoundException, SQLException {
           Class.forName("com.mysql.jdbc.Driver");
