@@ -4,18 +4,35 @@
  * and open the template in the editor.
  */
 package br.com.senac.objects;
+import java.util.Date;
 
 /**
  *
  * @author vorticl
  */
 public class Product {
+    private long id;
     private String name;
     private String description;
     private double priceIn;
     private double priceOut;
     private int amount;
+    private String data;
+    
+     public String getData() {
+        return data;
+    }
 
+    public void setData(String data) {
+        this.data = data;
+    }
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
     public String getName() {
         return name;
     }

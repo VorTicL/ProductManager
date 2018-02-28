@@ -24,18 +24,26 @@ public class Produto {
           Class.forName("com.mysql.jdbc.Driver");
           return DriverManager.getConnection("jdbc:mysql://localhost:3306/produtobd", "root", "");
      }
-    public List<Produto> consultar() throws ClassNotFoundException, SQLException {
+    public List<Product> consultar() throws ClassNotFoundException, SQLException {
         
          String query = "SELECT id, nome,descricao, preco_compra, preco_venda, quantidade, dt_cadastro from produto ";
          
-         List<Produto> lista = new ArrayList<Produto>();
+         List<Product> lista = new ArrayList<Product>();
          try (Connection conn = Conexao(); 
                 PreparedStatement stmt = conn.prepareStatement(query)) {
              
-         try (ResultSet resultados = stmt.executeQuery()) {
+         try (ResultSet resul = stmt.executeQuery()) {
                 
-                while(resultados.next()) {
+                while(resul.next()) {
                     Product p = new Product();
+                    p.setId(resul.getLong("id"));
+                    p.setName(resul.getString("nome"));
+                    p.setDescription(resul.getString("descricao"));
+                    p.setPriceIn(resul.getDouble("preco_compra"));
+                    p.setPriceOut(resul.getDouble("preco_venda"));
+                    p.setAmount(resul.getInt("quantidade"));
+                    p.setData(resul.getString("dt_cadastro"));
+                    lista.add(p);
                     
                 }
             }
@@ -46,4 +54,5 @@ public class Produto {
          
          return lista;
     
+}
 }
