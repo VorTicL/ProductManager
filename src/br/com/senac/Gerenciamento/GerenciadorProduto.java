@@ -20,11 +20,11 @@ import java.util.List;
  */
 public class GerenciadorProduto {
     
-     private Connection Conexao() throws ClassNotFoundException, SQLException {
+     private Connection Conexao() throws SQLException, Exception {
           Class.forName("com.mysql.jdbc.Driver");
           return DriverManager.getConnection("jdbc:mysql://localhost:3306/produtobd", "root", "");
      }
-    public List<Product> consultar() throws ClassNotFoundException, SQLException {
+    public List<Product> consultar() throws SQLException, Exception {
         
          String query = "SELECT id, nome,descricao, preco_compra, preco_venda, quantidade, dt_cadastro from produto ";
          
@@ -55,7 +55,7 @@ public class GerenciadorProduto {
          return lista;
     
 }
-    public void incluir(Product p) throws ClassNotFoundException, SQLException {
+    public void incluir(Product p) throws SQLException, Exception {
         String query = "INSERT INTO produto (nome, descricao, preco_compra, preco_venda, quantidade, dt_cadastro) VALUES (?, ?, ?, ?, ?,?)";
         
         try (Connection conn = Conexao();
@@ -71,5 +71,18 @@ public class GerenciadorProduto {
         }
         
     }
-    
+    public void atualizar(Product p) throws SQLException, Exception {
+        String query = "UPDATE produto SET nome=?, descricao=?, preco_compra=?, preco_venda=?, quantidade=?, dt_cadastro=? "
+                +"WHERE (produto_id=?)";
+        try (Connection conn = Conexao();
+                PreparedStatement stmt = conn.prepareStatement(query)){
+            stmt.setString(1, p.getName());
+            stmt.setString(2, p.getDescription());
+            stmt.setDouble(3, p.getPriceIn());
+            stmt.setDouble(4, p.getPriceOut());
+            stmt.setInt(5, p.getAmount());
+            stmt.setDate(6, new java.sql.Date(p.getData().getTime()));
+            stmt.executeUpdate();
+    }
+}
 }
