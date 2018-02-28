@@ -17,15 +17,16 @@ public class Product {
     private double priceIn;
     private double priceOut;
     private int amount;
-    private String data;
+    private Date data;
     
-     public String getData() {
+    public Date getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(Date data) {
         this.data = data;
     }
+    
     public long getId() {
         return id;
     }

@@ -55,4 +55,21 @@ public class GerenciadorProduto {
          return lista;
     
 }
+    public void incluir(Product p) throws ClassNotFoundException, SQLException {
+        String query = "INSERT INTO produto (nome, descricao, preco_compra, preco_venda, quantidade, dt_cadastro) VALUES (?, ?, ?, ?, ?,?)";
+        
+        try (Connection conn = Conexao();
+                PreparedStatement stmt = conn.prepareStatement(query)){
+            stmt.setString(1, p.getName());
+            stmt.setString(2, p.getDescription());
+            stmt.setDouble(3, p.getPriceIn());
+            stmt.setDouble(4, p.getPriceOut());
+            stmt.setInt(5, p.getAmount());
+            stmt.setDate(6, new java.sql.Date(p.getData().getTime()));
+            stmt.executeUpdate();
+            
+        }
+        
+    }
+    
 }
