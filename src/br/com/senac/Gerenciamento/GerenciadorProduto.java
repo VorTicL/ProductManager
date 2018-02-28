@@ -42,7 +42,7 @@ public class GerenciadorProduto {
                     p.setPriceIn(resul.getDouble("preco_compra"));
                     p.setPriceOut(resul.getDouble("preco_venda"));
                     p.setAmount(resul.getInt("quantidade"));
-                    p.setData(resul.getString("dt_cadastro"));
+                    p.setData(resul.getDate("dt_cadastro"));
                     lista.add(p);
                     
                 }
