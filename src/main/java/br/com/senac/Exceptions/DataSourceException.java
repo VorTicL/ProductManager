@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main.java.br.com.senac.Exceptions;
+package br.com.senac.Exceptions;
 
 /**
  *
- * @author noeli
+ * @author victor.rslucca
  */
-public class ProductExceptions extends Exception{
-    public ProductExceptions(String message) {
+public class DataSourceException extends Exception{
+    public DataSourceException(String message) {
         super(message);
-    }
+    }    
 }
