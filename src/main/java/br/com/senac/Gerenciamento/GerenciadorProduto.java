@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class GerenciadorProduto {
     
-     private static Connection Conexao() throws SQLException, Exception {
+     private Connection Conexao() throws SQLException, Exception {
           Class.forName("com.mysql.jdbc.Driver");
           return DriverManager.getConnection("jdbc:mysql://localhost:3306/produtobd", "root", "");
      }
@@ -91,7 +91,7 @@ public class GerenciadorProduto {
         
     } 
     
-    public static void incluir(Product p) throws SQLException, Exception {
+    public void incluir(Product p) throws SQLException, Exception {
         String query = "INSERT INTO produto (nome, descricao, preco_compra, preco_venda, quantidade, dt_cadastro) VALUES (?, ?, ?, ?, ?,?)";
         
         try (Connection conn = Conexao();
