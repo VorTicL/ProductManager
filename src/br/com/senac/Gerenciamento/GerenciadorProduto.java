@@ -85,4 +85,13 @@ public class GerenciadorProduto {
             stmt.executeUpdate();
     }
 }
+    public static void excluir(Product p) throws SQLException, Exception{
+        String query = "DELETE FROM produto WHERE produto_id=?";
+            try (Connection conn = Conexao();
+                  PreparedStatement stmt = conn.prepareStatement(query)){
+                stmt.setLong(1, 0);
+                stmt.execute();
+            }  
+    }
+            
 }
